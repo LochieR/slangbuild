@@ -20,7 +20,7 @@ jobs:
           uses: lukka/get-cmake@latest
 
         - name: Configure CMake
-          run: cmake -B build -S slang -G"Ninja" -A x64 -DSLANG_ENABLE_SLANGRT=ON -DSLANG_ENABLE_SLANGC=ON -DSLANG_ENABLE_SLANGD=ON -DSLANG_ENABLE_EXAMPLES=ON
+          run: cmake -B build -S slang -G"Ninja" -DSLANG_ENABLE_SLANGRT=ON -DSLANG_ENABLE_SLANGC=ON -DSLANG_ENABLE_SLANGD=ON -DSLANG_ENABLE_EXAMPLES=ON
 
         - name: Build with MSBuild
           run: cmake --build build --config Release -- -j
