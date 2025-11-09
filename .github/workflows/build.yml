@@ -17,7 +17,7 @@ jobs:
             submodules: recursive
 
         - name: Setup CMake
-          uses: lukka/get-cmake@v4
+          uses: lukka/get-cmake@v3
 
         - name: Configure CMake
           run: cmake -B build -S slang -G"Visual Studio 17 2022" -A x64 -DSLANG_ENABLE_SLANGRT=ON -DSLANG_ENABLE_SLANGC=ON -DSLANG_ENABLE_SLANGD=ON -DSLANG_ENABLE_EXAMPLES=ON
