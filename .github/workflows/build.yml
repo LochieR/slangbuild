@@ -1,0 +1,32 @@
+name: Build Slang
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    build-windows:
+        runs-on: windows-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            submodules: recursive
+
+        - name: Setup CMake
+          uses: lukka/get-cmake@v4
+
+        - name: Configure CMake
+          run: cmake -B build -S slang -G"Visual Studio 17 2022" -A x64 -DSLANG_ENABLE_SLANGRT=ON -DSLANG_ENABLE_SLANGC=ON -DSLANG_ENABLE_SLANGD=ON -DSLANG_ENABLE_EXAMPLES=ON
+
+        - name: Build with MSBuild
+          run: cmake --build build --config Release -- /m
+
+        - name: Upload build artifacts
+          uses: actions/upload-artifacts@v3
+          with:
+            name: Slang
+            path: build/Release
